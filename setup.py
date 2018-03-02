@@ -21,7 +21,7 @@ setup(
     ],
     entry_points={'trac.plugins': [
         'redispub.client = tracext.redispub.redis:RedisClient',
-        'redispub.ticket = tracext.redispub.ticket:RedisTicketStream'
+        'redispub.ticket = tracext.redispub.ticket:RedisTicketStream',
         'redispub.wiki = tracext.redispub.wiki:RedisWikiStream'
     ]}
 )
