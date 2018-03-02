@@ -1,12 +1,12 @@
 Trac Redis Pub
 ==============
-`Trac <https://trac.edgewall.org/>`_ plugin providing
-`Redis pub/sub channels <https://redis.io/topics/pubsub>`_
-for Trac events, specifically ticket and wiki page creation/updates.
+`Trac <https://trac.edgewall.org/>`_ plugin providing `Redis pub/sub
+channels <https://redis.io/topics/pubsub>`_ for Trac events, specifically
+ticket and wiki page creation/updates.
 
 This can be used to implement services external to the Trac web server
-itself that react to events on a Trac project.  For example, one can
-provide a stream of ticket events like:
+itself that react to events on a Trac project.  For example, one can provide
+a stream of ticket events like:
 
 .. code:: python
 
@@ -25,9 +25,10 @@ provide a stream of ticket events like:
 
 .. note::
 
-    Version 0.1 supports basic ticket and wiki-related events. 
-    However, there are many other types of events in Trac that
-    could be monitored this way, for which support may be added in future versions in the remote chance there is any demand.
+    Version 0.1 supports basic ticket and wiki-related events.  However,
+    there are many other types of events in Trac that could be monitored
+    this way, for which support may be added in future versions in the
+    remote chance there is any demand.
 
 
 Available Channels
@@ -43,8 +44,8 @@ Ticket channels
   configurable channel name prefix (e.g. 'trac'), and ``<env>`` is the
   environment name.
 
-  Messages on this channel consist of the field values of the created
-  ticket (along with the ticket ID) as a JSON-encoded dictionary:
+  Messages on this channel consist of the field values of the created ticket
+  (along with the ticket ID) as a JSON-encoded dictionary:
 
   .. code:: json
   
@@ -56,11 +57,10 @@ Ticket channels
       }
 
 * Ticket change events are published to the
-  ``<prefix>.<env>.ticket.changed.<id>`` channel, where ``<prefix>``
-  and ``<env>`` are as before, and ``<id>`` is the ticket ID.  This
-  allows subscribing just to the changes on a specific ticket, if
-  desired.  The message is a JSON-encoded dictionary with the following
-  format:
+  ``<prefix>.<env>.ticket.changed.<id>`` channel, where ``<prefix>`` and
+  ``<env>`` are as before, and ``<id>`` is the ticket ID.  This allows
+  subscribing just to the changes on a specific ticket, if desired.  The
+  message is a JSON-encoded dictionary with the following format:
 
   .. code:: json
   
@@ -72,17 +72,16 @@ Ticket channels
           "comment": "A comment..."
       }
 
-  Where ``"id"`` is the ticket ID. If the values of any ticket fields
-  where changed, ``"new_values"`` maps field names to their new values,
-  and ``"old_values"`` maps field names to the previous values of
-  fields that changed.  ``"author"`` is the author of the change, and
-  ``"comment"`` is the comment associated with the change (which may be
-  blank).
+  Where ``"id"`` is the ticket ID. If the values of any ticket fields where
+  changed, ``"new_values"`` maps field names to their new values, and
+  ``"old_values"`` maps field names to the previous values of fields that
+  changed.  ``"author"`` is the author of the change, and ``"comment"`` is
+  the comment associated with the change (which may be blank).
 
 * Ticket deltion events are published to the
-  ``<prefix>.<env>.ticket.deleted`` channel.  These events have the
-  same format as ticket creation events, and include the values of all
-  the fields on the just-deleted ticket.
+  ``<prefix>.<env>.ticket.deleted`` channel.  These events have the same
+  format as ticket creation events, and include the values of all the fields
+  on the just-deleted ticket.
 
 Wiki channels
 -------------
@@ -92,8 +91,8 @@ Wiki channels
   configurable channel name prefix (e.g. 'trac'), and ``<env>`` is the
   environment name.
 
-  Messages on this channel are JSON-encoded dictionaries representing
-  the wiki page (``"version"`` is always ``1`` for new pages):
+  Messages on this channel are JSON-encoded dictionaries representing the
+  wiki page (``"version"`` is always ``1`` for new pages):
 
   .. code:: json
 
@@ -108,13 +107,12 @@ Wiki channels
       }
 
 * Wiki change events are published to the
-  ``<prefix>.<env>.wiki.changed.<name>`` channel, where ``<prefix>``
-  and ``<env>`` are as before, and ``<name>`` is the wiki page name.  This
+  ``<prefix>.<env>.wiki.changed.<name>`` channel, where ``<prefix>`` and
+  ``<env>`` are as before, and ``<name>`` is the wiki page name.  This
   allows subscribing just to the changes on a specific wiki page, if
-  desired.  The message is a JSON-encoded dictionary with the same
-  format as the wiki created event, along with an additional
-  ``"old_text"`` property containing the previous text of the wiki page
-  before the change:
+  desired.  The message is a JSON-encoded dictionary with the same format as
+  the wiki created event, along with an additional ``"old_text"`` property
+  containing the previous text of the wiki page before the change:
   
   .. code:: json
 
@@ -127,8 +125,7 @@ Wiki channels
           ...
       }
 
-* Wiki deltion events are published to the
-  ``<prefix>.<env>.wiki.deleted`` channel.  These events have the same
-  format as wiki creation events, and include the properties of the
-  just-deleted wiki page..
+* Wiki deltion events are published to the ``<prefix>.<env>.wiki.deleted``
+  channel.  These events have the same format as wiki creation events, and
+  include the properties of the just-deleted wiki page..
 
