@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='tracext-redispub',
-    version='0.1',
+    version='0.1.1.dev0',
     author='Erik M. Bray',
     author_email='erik.m.bray@gmail.com',
     url='https://github.com/embray/tracext-redispub',
