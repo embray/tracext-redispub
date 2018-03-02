@@ -39,7 +39,9 @@ The plugin can be installed in the standard way using ``pip``::
     $ pip install tracext-redispub
 
 To enable the plugin in Trac, add the following to the ``[components]``
-section of your ``trac.ini``::
+section of your ``trac.ini``:
+
+.. code:: ini
 
     [components]
     tracext.redispub.redis.redisclient = enabled
@@ -55,7 +57,9 @@ The plugin is further configured through two additional configuration
 sections.  The first section is ``[redis_client]`` which is used for
 configuring how to connect to the Redis server.  Currently this only takes a
 small number of options--later it will be expanded to the fuller range of
-options for configuring your Redis connection::
+options for configuring your Redis connection:
+
+.. code:: ini
 
     [redis_client]
     # hostname of the Redis server
@@ -71,7 +75,9 @@ options for configuring your Redis connection::
     unix_socket_path =
 
 One additional section configures the behavior of the plugin itself (and
-currently has only one option)::
+currently has only one option):
+
+.. code:: ini
 
     [redispub]
     # This string is prefixed to the names of all channels published to by
