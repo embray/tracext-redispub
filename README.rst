@@ -173,7 +173,7 @@ Wiki channels
           ...
       }
 
-* Wiki deltion events are published to the ``<prefix>.<env>.wiki.deleted``
+* Wiki deletion events are published to the ``<prefix>.<env>.wiki.deleted``
   channel.  These events have the same format as wiki creation events, and
   include the properties of the just-deleted wiki page..
 
