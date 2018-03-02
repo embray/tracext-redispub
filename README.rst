@@ -126,7 +126,7 @@ Ticket channels
   changed.  ``"author"`` is the author of the change, and ``"comment"`` is
   the comment associated with the change (which may be blank).
 
-* Ticket deltion events are published to the
+* Ticket deletion events are published to the
   ``<prefix>.<env>.ticket.deleted`` channel.  These events have the same
   format as ticket creation events, and include the values of all the fields
   on the just-deleted ticket.
