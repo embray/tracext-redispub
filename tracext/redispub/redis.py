@@ -72,7 +72,7 @@ class RedisComponent(Component):
     returning the `Redis` client instance of the `RedisClient` component.
     """
 
-    channel_prefix = Option('redis', 'channel_prefix', 'trac',
+    channel_prefix = Option('redispub', 'channel_prefix', 'trac',
                             doc="Prefix to use for channels published to by "
                                 "components of this plug-in.  All other "
                                 "channels are dotted with this name; e.g. "
