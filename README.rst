@@ -13,6 +13,7 @@ a stream of ticket events like:
     >>> import redis
     >>> client = redis.Redis()
     >>> pubsub = client.pubsub()
+    >>> pubsub.psubscribe('trac.*')
     >>> for event in pubsub.listen():
     ...     print(event)
     ...
