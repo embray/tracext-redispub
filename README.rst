@@ -20,7 +20,7 @@ a stream of ticket events like:
     {'pattern': 'trac.*', 'type': 'pmessage', 'channel': 'trac.test.wiki.created', 'data': '{"comment": "Change comment", "name": "NewWikiPage", "author": "anonymous", "text": "Page contents.", "readonly": 0, "version": 1, "time": "2018-03-02T14:10:22.844985+00:00"}'}
     {'pattern': 'trac.*', 'type': 'pmessage', 'channel': 'trac.test.wiki.changed.NewWikiPage', 'data': '{"comment": "Editing page.", "name": "NewWikiPage", "author": "anonymous", "text": "Page contents.\\r\\nAdditional contents.", "old_text": "Page contents.", "readonly": 0, "version": 2, "time": "2018-03-02T14:10:36.192988+00:00"}'}
     {'pattern': 'trac.*', 'type': 'pmessage', 'channel': 'trac.test.ticket.created', 'data': '{"status": "new", "changetime": "2018-03-02T14:15:01.401989+00:00", "reporter": "anonymous", "cc": "", "milestone": "", "component": "component1", "keywords": "", "owner": "somebody", "id": 17, "description": "Problem description.", "author": "", "summary": "Test ticket", "priority": "major", "version": "", "time": "2018-03-02T14:15:01.401989+00:00", "type": "defect"}'}
-    {'pattern': 'trac.*', 'type': 'pmessage', 'channel': 'trac.test.ticket.changed.17', 'data': '{"comment": "Updated milestone.", "new_values": {"milestone": "milestone1"}, "id": 17, "old_values": {"milestone": ""}, "author": "anonymous"}'}
+    {'pattern': 'trac.*', 'type': 'pmessage', 'channel': 'trac.test.ticket.changed.17', 'data': '{"comment": "Updated milestone.", "new_values": {"status": "new", "changetime": "2018-03-02T14:15:01.401989+00:00", "reporter": "anonymous", "cc": "", "milestone": "milestone1", "component": "component1", "keywords": "", "owner": "somebody", "id": 17, "description": "Problem description.", "author": "", "summary": "Test ticket", "priority": "major", "version": "", "time": "2018-03-02T14:15:01.401989+00:00", "type": "defect"}, "id": 17, "old_values": {"milestone": ""}, "author": "anonymous"}'}
     
 
 .. note::
@@ -126,8 +126,8 @@ Ticket channels
           "comment": "A comment..."
       }
 
-  Where ``"id"`` is the ticket ID. If the values of any ticket fields where
-  changed, ``"new_values"`` maps field names to their new values, and
+  Where ``"id"`` is the ticket ID. ``"new_values"`` maps field names to
+  their new values (including fields that did not change), and
   ``"old_values"`` maps field names to the previous values of fields that
   changed.  ``"author"`` is the author of the change, and ``"comment"`` is
   the comment associated with the change (which may be blank).

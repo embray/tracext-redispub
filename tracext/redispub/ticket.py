@@ -45,10 +45,10 @@ class RedisTicketStream(RedisComponent):
                   "comment": "A comment..."
               }
 
-          Where ``"id"`` is the ticket ID. If the values of any ticket fields
-          where changed, ``"new_values"`` maps field names to their new values,
-          and ``"old_values"`` maps field names to the previous values of
-          fields that changed.  ``"author"`` is the author of the change, and
+          Where ``"id"`` is the ticket ID. ``"new_values"`` maps field names to
+          their new values (including fields that did not change), and
+          ``"old_values"`` maps field names to the previous values of fields
+          that changed.  ``"author"`` is the author of the change, and
           ``"comment"`` is the comment associated with the change (which may be
           blank).
 
@@ -70,8 +70,7 @@ class RedisTicketStream(RedisComponent):
 
     def ticket_changed(self, ticket, comment, author, old_values):
         data = {
-            'new_values': dict((field, ticket.values.get(field, ''))
-                               for field in old_values),
+            'new_values': ticket.values,
             'old_values': old_values,
             'author': author,
             'comment': comment,
